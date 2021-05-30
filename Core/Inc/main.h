@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -59,6 +59,12 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
+extern UART_HandleTypeDef huart1;
+extern uint8_t u_buf[256];
+#define printf(...)    HAL_UART_Transmit(&huart1,\
+										(uint8_t *)u_buf,\
+										sprintf((char*)u_buf,__VA_ARGS__),\
+										0XFFFF)
 
 /* USER CODE END Private defines */
 
